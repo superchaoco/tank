@@ -167,6 +167,12 @@ class TankFrame extends Frame {
         @Override
         public void keyReleased(KeyEvent e) {
             int keyCode = e.getKeyCode();
+            // 获取开火策略
+            FireStrategy strategy = FireStrategyContext.getStrategy(keyCode);
+            if(strategy != null){
+                // 获取到策略就开火
+                strategy.fire(tank);
+            }
             switch (keyCode) {
                 case KeyEvent.VK_LEFT:
                     // 重置左
