@@ -17,17 +17,17 @@ public abstract class GameObject {
     /**
      * x轴
      */
-    private Integer x;
+    private int x;
 
     /**
      * y轴
      */
-    private Integer y;
+    private int y;
 
     /**
      * 绘制坦克
      *
      * @param g 画笔
      */
-    public abstract void paintTank(Graphics g);
+    public abstract void paintGameObject(Graphics g);
 }

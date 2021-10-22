@@ -11,6 +11,6 @@ public class OrdinaryFireStrategy implements FireStrategy {
             return;
         }
         GameModel gameModel = tank.getGameModel();
-        gameModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), tank.getDir(), gameModel, Camp.GOOD));
+        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), tank.getDir(), gameModel, Camp.GOOD));
     }
 }

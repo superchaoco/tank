@@ -14,19 +14,17 @@ public class GameModel {
     private Integer x = 50, y = 500;
 
     /**
-     * 敌方坦克List
+     * 所有游戏元素集合
      */
-    public List<Tank> enemyTanks = new ArrayList<>();
+    List<GameObject> elementList = new ArrayList<>();
 
-    /**
-     * 创建子弹集合
-     */
-    List<Bullet> bulletList = new ArrayList<>();
+    public void addObject(GameObject gameObject){
+        elementList.add(gameObject);
+    }
 
-    /**
-     * 创建爆炸对象
-     */
-    List<Blast> blastList = new ArrayList<>();
+    public void removeObject(GameObject gameObject){
+        elementList.remove(gameObject);
+    }
 
     /**
      * 创建主站坦克
@@ -41,35 +39,29 @@ public class GameModel {
     public void paint(Graphics g) {
         Color color = g.getColor();
         g.setColor(Color.RED);
-        g.drawString("子弹数量=" + bulletList.size(), 20, 50);
-        g.drawString("坦克数量=" + enemyTanks.size(), 20, 80);
-        g.drawString("爆炸数量=" + blastList.size(), 20, 110);
+//        g.drawString("子弹数量=" + bulletList.size(), 20, 50);
+//        g.drawString("坦克数量=" + enemyTanks.size(), 20, 80);
+//        g.drawString("爆炸数量=" + blastList.size(), 20, 110);
         g.drawString("我方坦克血量=" + tank.getHp(), 20, 140);
         g.setColor(color);
-        // 绘制坦克
-        tank.paintTank(g);
+        // 绘制我方坦克
+        tank.paintGameObject(g);
 
-        // 绘制爆炸特效
-        for (int i = 0; i < blastList.size(); i++) {
-            blastList.get(i).paintTank(g);
+        // 绘制元素
+        for (int i = 0; i < elementList.size(); i++) {
+            elementList.get(i).paintGameObject(g);
         }
-
-        // 绘制敌人坦克
-        for (int i = 0; i < enemyTanks.size(); i++) {
-            enemyTanks.get(i).paintTank(g);
-        }
-
-        // 发射子弹4
-        for (int i = 0; i < bulletList.size(); i++) {
-            Bullet bullet = bulletList.get(i);
-            // 画子弹
-            bullet.paintBullet(g);
-            // 每画出一个子弹就做一次碰撞检测
-            for (int j = 0; j < enemyTanks.size(); j++) {
-                Tank tank = enemyTanks.get(j);
-                bullet.collision(tank);
-            }
-            bullet.collision(tank);
-        }
+//        // 发射子弹4
+//        for (int i = 0; i < bulletList.size(); i++) {
+//            Bullet bullet = bulletList.get(i);
+//            // 画子弹
+//            bullet.paintGameObject(g);
+//            // 每画出一个子弹就做一次碰撞检测
+//            for (int j = 0; j < enemyTanks.size(); j++) {
+//                Tank tank = enemyTanks.get(j);
+//                bullet.collision(tank);
+//            }
+//            bullet.collision(tank);
+//        }
     }
 }

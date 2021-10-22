@@ -1,3 +1,5 @@
+import lombok.Data;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -6,16 +8,17 @@ import java.awt.image.BufferedImage;
  * @Version V1.0.0
  * @Date 2021/10/16 13:37
  */
-public class Bullet {
+@Data
+public class Bullet extends GameObject {
     /**
      * x轴
      */
-    private Integer x;
+    private int x;
 
     /**
      * y轴
      */
-    private Integer y;
+    private int y;
 
     /**
      * 方向
@@ -53,46 +56,6 @@ public class Bullet {
     private static final Integer SPEED = 20;
 
 
-    public BufferedImage getBufferedImage() {
-        return bufferedImage;
-    }
-
-    public void setBufferedImage(BufferedImage bufferedImage) {
-        this.bufferedImage = bufferedImage;
-    }
-
-    public Integer getX() {
-        return x;
-    }
-
-    public void setX(Integer x) {
-        this.x = x;
-    }
-
-    public Integer getY() {
-        return y;
-    }
-
-    public void setY(Integer y) {
-        this.y = y;
-    }
-
-    public Dir getDir() {
-        return dir;
-    }
-
-    public void setDir(Dir dir) {
-        this.dir = dir;
-    }
-
-    public Camp getCamp() {
-        return camp;
-    }
-
-    public void setCamp(Camp camp) {
-        this.camp = camp;
-    }
-
     Bullet(Integer x, Integer y, Dir dir, GameModel gameModel, Camp camp) {
         this.x = x;
         this.y = y;
@@ -107,10 +70,11 @@ public class Bullet {
      *
      * @param g 画笔
      */
-    public void paintBullet(Graphics g) {
+    @Override
+    public void paintGameObject(Graphics g) {
 
         if (removeFlag) {
-            gameModel.bulletList.remove(this);
+            gameModel.removeObject(this);
         }
 
         // 绘制一个子弹
@@ -223,7 +187,7 @@ public class Bullet {
                 // 移除坦克
                 tank.die();
                 // 添加爆炸特效
-                gameModel.blastList.add(new Blast(tank.getX(), tank.getY(), gameModel));
+                gameModel.addObject(new Blast(tank.getX(), tank.getY(), gameModel));
             } else {
                 // 标记当前子弹不可用
                 this.takeOffect = false;
@@ -234,4 +198,5 @@ public class Bullet {
     private void die() {
         this.removeFlag = true;
     }
+
 }

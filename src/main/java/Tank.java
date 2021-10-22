@@ -1,8 +1,5 @@
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
@@ -19,12 +16,12 @@ public class Tank extends GameObject {
     /**
      * x轴
      */
-    private Integer x;
+    private int x;
 
     /**
      * y轴
      */
-    private Integer y;
+    private int y;
 
     /**
      * 方向
@@ -94,9 +91,9 @@ public class Tank extends GameObject {
      * @param g 画笔
      */
     @Override
-    public void paintTank(Graphics g) {
+    public void paintGameObject(Graphics g) {
         if (removeFlag) {
-            gameModel.enemyTanks.remove(this);
+            gameModel.removeObject(this);
             return;
         }
 
@@ -215,7 +212,7 @@ public class Tank extends GameObject {
         if (this.removeFlag) {
             return;
         }
-        gameModel.bulletList.add(new Bullet(x, y, this.dir, gameModel, camp));
+        gameModel.addObject(new Bullet(x, y, this.dir, gameModel, camp));
     }
 
     public void die() {

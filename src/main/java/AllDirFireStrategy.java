@@ -11,13 +11,13 @@ public class AllDirFireStrategy implements FireStrategy {
             return;
         }
         GameModel gameModel = tank.getGameModel();
-        gameModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.UP, gameModel, Camp.GOOD));
-        gameModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.DOWN, gameModel, Camp.GOOD));
-        gameModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.LEFT, gameModel, Camp.GOOD));
-        gameModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT, gameModel, Camp.GOOD));
-        gameModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT_DOWN, gameModel, Camp.GOOD));
-        gameModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.LEFT_DOWN, gameModel, Camp.GOOD));
-        gameModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT_UP, gameModel, Camp.GOOD));
-        gameModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.LEFT_UP, gameModel, Camp.GOOD));
+        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.UP, gameModel, Camp.GOOD));
+        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.DOWN, gameModel, Camp.GOOD));
+        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.LEFT, gameModel, Camp.GOOD));
+        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT, gameModel, Camp.GOOD));
+        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT_DOWN, gameModel, Camp.GOOD));
+        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.LEFT_DOWN, gameModel, Camp.GOOD));
+        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT_UP, gameModel, Camp.GOOD));
+        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.LEFT_UP, gameModel, Camp.GOOD));
     }
 }

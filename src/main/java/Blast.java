@@ -1,6 +1,9 @@
+import lombok.Data;
+
 import java.awt.*;
 
-public class Blast {
+@Data
+public class Blast extends GameObject {
     /**
      * 爆炸的宽度
      */
@@ -27,41 +30,17 @@ public class Blast {
 
     private GameModel gameModel;
 
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public GameModel getGameModel() {
-        return gameModel;
-    }
-
-    public void setGameModel(GameModel gameModel) {
-        this.gameModel = gameModel;
-    }
-
     public Blast(int x, int y, GameModel gameModel) {
         this.x = x;
         this.y = y;
         this.gameModel = gameModel;
     }
 
-    public void paintTank(Graphics g) {
+    @Override
+    public void paintGameObject(Graphics g) {
         g.drawImage(ResourceMgr.blastList.get(recordIndex++), x, y, null);
         if (ResourceMgr.blastList.size() == recordIndex) {
-            gameModel.blastList.remove(this);
+            gameModel.removeObject(this);
         }
 
     }

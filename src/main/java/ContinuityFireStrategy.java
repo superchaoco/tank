@@ -12,7 +12,7 @@ public class ContinuityFireStrategy implements FireStrategy {
         }
         GameModel gameModel = tank.getGameModel();
         for (int i = 0; i < 3; i++) {
-            gameModel.bulletList.add(new Bullet(tank.getX() + i * 30, tank.getY() + i * 30, tank.getDir(), gameModel, Camp.GOOD));
+            gameModel.addObject(new Bullet(tank.getX() + i * 30, tank.getY() + i * 30, tank.getDir(), gameModel, Camp.GOOD));
         }
     }
 }
