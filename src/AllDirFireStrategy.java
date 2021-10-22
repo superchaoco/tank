@@ -10,14 +10,14 @@ public class AllDirFireStrategy implements FireStrategy {
         if (tank.getRemoveFlag()) {
             return;
         }
-        TankFrame tankFrame = tank.getTankFrame();
-        tankFrame.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.UP, tankFrame, Camp.GOOD));
-        tankFrame.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.DOWN, tankFrame, Camp.GOOD));
-        tankFrame.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.LEFT, tankFrame, Camp.GOOD));
-        tankFrame.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT, tankFrame, Camp.GOOD));
-        tankFrame.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT_DOWN, tankFrame, Camp.GOOD));
-        tankFrame.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.LEFT_DOWN, tankFrame, Camp.GOOD));
-        tankFrame.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT_UP, tankFrame, Camp.GOOD));
-        tankFrame.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.LEFT_UP, tankFrame, Camp.GOOD));
+        TankModel tankModel = tank.getTankModel();
+        tankModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.UP, tankModel, Camp.GOOD));
+        tankModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.DOWN, tankModel, Camp.GOOD));
+        tankModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.LEFT, tankModel, Camp.GOOD));
+        tankModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT, tankModel, Camp.GOOD));
+        tankModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT_DOWN, tankModel, Camp.GOOD));
+        tankModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.LEFT_DOWN, tankModel, Camp.GOOD));
+        tankModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT_UP, tankModel, Camp.GOOD));
+        tankModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), Dir.LEFT_UP, tankModel, Camp.GOOD));
     }
 }

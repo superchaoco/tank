@@ -3,8 +3,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Author 王超
@@ -13,12 +11,10 @@ import java.util.List;
  */
 class TankFrame extends Frame {
 
-    public static final Integer GAME_WEIGHT = 1000, GAME_HEIGHT = 1000;
-
     /**
-     * 坦克初始化位置 xy
+     * 游戏窗体的宽度和高度
      */
-    private Integer x = 50, y = 500;
+    public static final Integer GAME_WEIGHT = 1000, GAME_HEIGHT = 1000;
 
     /**
      * 左方向标识
@@ -41,26 +37,21 @@ class TankFrame extends Frame {
     private Boolean flagDown = false;
 
     /**
-     * 创建主站坦克
+     * tankMold 的实体对象
      */
-    public Tank tank = new Tank(x, y, Dir.DOWN, this,Camp.GOOD,10,500);
+    private TankModel tankModel;
 
-    /**
-     * 敌方坦克List
-     */
-    public List<Tank> enemyTanks = new ArrayList<>();
+    public TankModel getTankModel() {
+        return tankModel;
+    }
 
-    /**
-     * 创建子弹集合
-     */
-    java.util.List<Bullet> bulletList = new ArrayList<>();
-
-    /**
-     * 创建爆炸对象
-     */
-    List<Blast> blastList= new ArrayList<>();
+    public void setTankModel(TankModel tankModel) {
+        this.tankModel = tankModel;
+    }
 
     TankFrame() {
+        // 初始化tankModel
+        tankModel = new TankModel();
         // 打开窗口
         this.setVisible(true);
         // 设置窗口不能修改
@@ -87,42 +78,8 @@ class TankFrame extends Frame {
      */
     @Override
     public void paint(Graphics g) {
-        Color color = g.getColor();
-        g.setColor(Color.RED);
-        g.drawString("子弹数量=" + bulletList.size(), 20, 50);
-        g.drawString("坦克数量=" + enemyTanks.size(), 20, 80);
-        g.drawString("爆炸数量=" + blastList.size(), 20, 110);
-        g.drawString("我方坦克血量=" + tank.getHp(), 20, 140);
-        g.setColor(color);
-        // 绘制坦克
-        tank.paintTank(g);
-
-        // 绘制爆炸特效
-        for (int i = 0; i < blastList.size(); i++) {
-            blastList.get(i).paintTank(g);
-        }
-
-        // 绘制敌人坦克
-        for (int i = 0; i < enemyTanks.size(); i++) {
-            enemyTanks.get(i).paintTank(g);
-        }
-
-        // 发射子弹4
-        for (int i = 0; i < bulletList.size(); i++) {
-            Bullet bullet = bulletList.get(i);
-            // 画子弹
-            bullet.paintBullet(g);
-            // 每画出一个子弹就做一次碰撞检测
-            for (int j = 0; j < enemyTanks.size(); j++) {
-                Tank tank = enemyTanks.get(j);
-                bullet.collision(tank);
-            }
-            bullet.collision(tank);
-        }
-
-
+        tankModel.paint(g);
     }
-
 
 
     class MyKeyListener extends KeyAdapter {
@@ -169,9 +126,9 @@ class TankFrame extends Frame {
             int keyCode = e.getKeyCode();
             // 获取开火策略
             FireStrategy strategy = FireStrategyContext.getStrategy(keyCode);
-            if(strategy != null){
+            if (strategy != null) {
                 // 获取到策略就开火
-                strategy.fire(tank);
+                strategy.fire(tankModel.tank);
             }
             switch (keyCode) {
                 case KeyEvent.VK_LEFT:
@@ -191,7 +148,7 @@ class TankFrame extends Frame {
                     flagDown = false;
                     break;
                 case KeyEvent.VK_CONTROL:
-                    tank.fire(Camp.GOOD);
+                    tankModel.tank.fire(Camp.GOOD);
                     break;
                 default:
                     break;
@@ -203,6 +160,7 @@ class TankFrame extends Frame {
          * 改变坦克的方向
          */
         private void changeDir() {
+            Tank tank = tankModel.tank;
             tank.setMoveing(true);
             if (flagRight && flagDown && !flagLeft && !flagUp) {
                 tank.setDir(Dir.RIGHT_DOWN);

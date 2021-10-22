@@ -10,7 +10,7 @@ public class OrdinaryFireStrategy implements FireStrategy {
         if (tank.getRemoveFlag()) {
             return;
         }
-        TankFrame tankFrame = tank.getTankFrame();
-        tankFrame.bulletList.add(new Bullet(tank.getX(), tank.getY(), tank.getDir(), tankFrame, Camp.GOOD));
+        TankModel tankModel = tank.getTankModel();
+        tankModel.bulletList.add(new Bullet(tank.getX(), tank.getY(), tank.getDir(), tankModel, Camp.GOOD));
     }
 }

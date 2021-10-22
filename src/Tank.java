@@ -86,19 +86,19 @@ public class Tank {
     /**
      * 页面对象
      */
-    private TankFrame tankFrame;
+    private TankModel tankModel;
 
     /**
      * 创建随机数对象`
      */
     private Random random = new Random();
 
-    public TankFrame getTankFrame() {
-        return tankFrame;
+    public TankModel getTankModel() {
+        return tankModel;
     }
 
-    public void setTankFrame(TankFrame tankFrame) {
-        this.tankFrame = tankFrame;
+    public void setTankModel(TankModel tankModel) {
+        this.tankModel = tankModel;
     }
 
     public Boolean getRemoveFlag() {
@@ -142,26 +142,26 @@ public class Tank {
     }
 
 
-    Tank(Integer x, Integer y, Dir dir, TankFrame tankFrame, Boolean moveing) {
+    Tank(Integer x, Integer y, Dir dir, TankModel tankFrame, Boolean moveing) {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.tankFrame = tankFrame;
+        this.tankModel = tankFrame;
         this.moveing = moveing;
     }
 
-    Tank(Integer x, Integer y, Dir dir, TankFrame tankFrame) {
+    Tank(Integer x, Integer y, Dir dir, TankModel tankFrame) {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.tankFrame = tankFrame;
+        this.tankModel = tankFrame;
     }
 
-    Tank(Integer x, Integer y, Dir dir, TankFrame tankFrame, Camp camp, Integer speed, Integer hp) {
+    Tank(Integer x, Integer y, Dir dir, TankModel tankFrame, Camp camp, Integer speed, Integer hp) {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.tankFrame = tankFrame;
+        this.tankModel = tankFrame;
         this.camp = camp;
         this.speed = speed;
         this.hp = hp;
@@ -179,7 +179,7 @@ public class Tank {
      */
     public void paintTank(Graphics g) {
         if (removeFlag) {
-            tankFrame.enemyTanks.remove(this);
+            tankModel.enemyTanks.remove(this);
             return;
         }
 
@@ -290,7 +290,7 @@ public class Tank {
             this.y = 30;
         }
         if (y > TankFrame.GAME_HEIGHT - bufferedImage.getHeight()) {
-            this.y = TankFrame.GAME_HEIGHT- bufferedImage.getHeight();
+            this.y = TankFrame.GAME_HEIGHT - bufferedImage.getHeight();
         }
     }
 
@@ -298,7 +298,7 @@ public class Tank {
         if (this.removeFlag) {
             return;
         }
-        tankFrame.bulletList.add(new Bullet(x, y, this.dir, tankFrame, camp));
+        tankModel.bulletList.add(new Bullet(x, y, this.dir, tankModel, camp));
     }
 
     public void die() {

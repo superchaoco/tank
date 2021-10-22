@@ -4,11 +4,11 @@ public class Blast {
     /**
      * 爆炸的宽度
      */
-    private static  final  Integer BLAST_WEIGHT = ResourceMgr.blastList.get(0).getWidth();
+    private static final Integer BLAST_WEIGHT = ResourceMgr.blastList.get(0).getWidth();
     /**
      * 爆炸的高度
      */
-    private static  final  Integer BLAST_HEIGHT = ResourceMgr.blastList.get(0).getHeight();
+    private static final Integer BLAST_HEIGHT = ResourceMgr.blastList.get(0).getHeight();
 
     /**
      * 记录爆炸坐标
@@ -25,7 +25,7 @@ public class Blast {
      */
     private int y;
 
-    private TankFrame tankFrame;
+    private TankModel tankModel;
 
 
     public int getX() {
@@ -44,24 +44,24 @@ public class Blast {
         this.y = y;
     }
 
-    public TankFrame getTankFrame() {
-        return tankFrame;
+    public TankModel getTankModel() {
+        return tankModel;
     }
 
-    public void setTankFrame(TankFrame tankFrame) {
-        this.tankFrame = tankFrame;
+    public void setTankModel(TankModel tankModel) {
+        this.tankModel = tankModel;
     }
 
-    public Blast(int x, int y, TankFrame tankFrame) {
+    public Blast(int x, int y, TankModel tankModel) {
         this.x = x;
         this.y = y;
-        this.tankFrame = tankFrame;
+        this.tankModel = tankModel;
     }
 
     public void paintTank(Graphics g) {
         g.drawImage(ResourceMgr.blastList.get(recordIndex++), x, y, null);
-        if(ResourceMgr.blastList.size() == recordIndex){
-            tankFrame.blastList.remove(this);
+        if (ResourceMgr.blastList.size() == recordIndex) {
+            tankModel.blastList.remove(this);
         }
 
     }

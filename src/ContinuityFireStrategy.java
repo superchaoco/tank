@@ -10,9 +10,9 @@ public class ContinuityFireStrategy implements FireStrategy {
         if (tank.getRemoveFlag()) {
             return;
         }
-        TankFrame tankFrame = tank.getTankFrame();
+        TankModel tankModel = tank.getTankModel();
         for (int i = 0; i < 3; i++) {
-            tankFrame.bulletList.add(new Bullet(tank.getX() + i * 30, tank.getY() + i * 30, tank.getDir(), tankFrame, Camp.GOOD));
+            tankModel.bulletList.add(new Bullet(tank.getX() + i * 30, tank.getY() + i * 30, tank.getDir(), tankModel, Camp.GOOD));
         }
     }
 }
