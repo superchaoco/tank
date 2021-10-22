@@ -50,7 +50,7 @@ public class Bullet {
     /**
      * 速度
      */
-    private static final Integer SPEED = 10;
+    private static final Integer SPEED = 20;
 
 
     public BufferedImage getBufferedImage() {

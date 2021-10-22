@@ -32,7 +32,7 @@ public class Tank {
     /**
      * 坦克的血量
      */
-    private Integer hp = 1;
+    private Integer hp = 5;
 
     public Integer getHp() {
         return hp;
