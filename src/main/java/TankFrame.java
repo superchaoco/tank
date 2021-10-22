@@ -39,19 +39,19 @@ class TankFrame extends Frame {
     /**
      * tankMold 的实体对象
      */
-    private TankModel tankModel;
+    private GameModel gameModel;
 
-    public TankModel getTankModel() {
-        return tankModel;
+    public GameModel getGameModel() {
+        return gameModel;
     }
 
-    public void setTankModel(TankModel tankModel) {
-        this.tankModel = tankModel;
+    public void setGameModel(GameModel gameModel) {
+        this.gameModel = gameModel;
     }
 
     TankFrame() {
         // 初始化tankModel
-        tankModel = new TankModel();
+        gameModel = new GameModel();
         // 打开窗口
         this.setVisible(true);
         // 设置窗口不能修改
@@ -78,7 +78,7 @@ class TankFrame extends Frame {
      */
     @Override
     public void paint(Graphics g) {
-        tankModel.paint(g);
+        gameModel.paint(g);
     }
 
 
@@ -128,7 +128,7 @@ class TankFrame extends Frame {
             FireStrategy strategy = FireStrategyContext.getStrategy(keyCode);
             if (strategy != null) {
                 // 获取到策略就开火
-                strategy.fire(tankModel.tank);
+                strategy.fire(gameModel.tank);
             }
             switch (keyCode) {
                 case KeyEvent.VK_LEFT:
@@ -148,7 +148,7 @@ class TankFrame extends Frame {
                     flagDown = false;
                     break;
                 case KeyEvent.VK_CONTROL:
-                    tankModel.tank.fire(Camp.GOOD);
+                    gameModel.tank.fire(Camp.GOOD);
                     break;
                 default:
                     break;
@@ -160,7 +160,7 @@ class TankFrame extends Frame {
          * 改变坦克的方向
          */
         private void changeDir() {
-            Tank tank = tankModel.tank;
+            Tank tank = gameModel.tank;
             tank.setMoveing(true);
             if (flagRight && flagDown && !flagLeft && !flagUp) {
                 tank.setDir(Dir.RIGHT_DOWN);

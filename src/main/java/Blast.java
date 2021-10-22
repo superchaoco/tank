@@ -25,7 +25,7 @@ public class Blast {
      */
     private int y;
 
-    private TankModel tankModel;
+    private GameModel gameModel;
 
 
     public int getX() {
@@ -44,24 +44,24 @@ public class Blast {
         this.y = y;
     }
 
-    public TankModel getTankModel() {
-        return tankModel;
+    public GameModel getGameModel() {
+        return gameModel;
     }
 
-    public void setTankModel(TankModel tankModel) {
-        this.tankModel = tankModel;
+    public void setGameModel(GameModel gameModel) {
+        this.gameModel = gameModel;
     }
 
-    public Blast(int x, int y, TankModel tankModel) {
+    public Blast(int x, int y, GameModel gameModel) {
         this.x = x;
         this.y = y;
-        this.tankModel = tankModel;
+        this.gameModel = gameModel;
     }
 
     public void paintTank(Graphics g) {
         g.drawImage(ResourceMgr.blastList.get(recordIndex++), x, y, null);
         if (ResourceMgr.blastList.size() == recordIndex) {
-            tankModel.blastList.remove(this);
+            gameModel.blastList.remove(this);
         }
 
     }

@@ -1,3 +1,8 @@
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
@@ -7,7 +12,9 @@ import java.util.Random;
  * @Version V1.0.0
  * @Date 2021/10/16 13:37
  */
-public class Tank {
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class Tank extends GameObject {
 
     /**
      * x轴
@@ -34,14 +41,6 @@ public class Tank {
      */
     private Integer hp = 5;
 
-    public Integer getHp() {
-        return hp;
-    }
-
-    public void setHp(Integer hp) {
-        this.hp = hp;
-    }
-
     /**
      * 移动标识
      */
@@ -49,34 +48,11 @@ public class Tank {
 
     private Camp camp = Camp.BDA;
 
-    public Camp getCamp() {
-        return camp;
-    }
-
-    public BufferedImage getBufferedImage() {
-        return bufferedImage;
-    }
-
-    public void setBufferedImage(BufferedImage bufferedImage) {
-        this.bufferedImage = bufferedImage;
-    }
-
-    public void setCamp(Camp camp) {
-        this.camp = camp;
-    }
 
     /**
      * 速度
      */
     private Integer speed = 3;
-
-    public Integer getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(Integer speed) {
-        this.speed = speed;
-    }
 
     /**
      * 是否删除标识
@@ -86,100 +62,41 @@ public class Tank {
     /**
      * 页面对象
      */
-    private TankModel tankModel;
+    private GameModel gameModel;
 
     /**
      * 创建随机数对象`
      */
     private Random random = new Random();
 
-    public TankModel getTankModel() {
-        return tankModel;
-    }
-
-    public void setTankModel(TankModel tankModel) {
-        this.tankModel = tankModel;
-    }
-
-    public Boolean getRemoveFlag() {
-        return removeFlag;
-    }
-
-    public void setRemoveFlag(Boolean removeFlag) {
-        this.removeFlag = removeFlag;
-    }
-
-    public Boolean getMoveing() {
-        return moveing;
-    }
-
-    public void setMoveing(Boolean moveing) {
+    Tank(Integer x, Integer y, Dir dir, GameModel tankFrame, Boolean moveing) {
+        this.x = x;
+        this.y = y;
+        this.dir = dir;
+        this.gameModel = tankFrame;
         this.moveing = moveing;
     }
 
-    public Integer getX() {
-        return x;
-    }
 
-    public void setX(Integer x) {
-        this.x = x;
-    }
-
-    public Integer getY() {
-        return y;
-    }
-
-    public void setY(Integer y) {
-        this.y = y;
-    }
-
-    public Dir getDir() {
-        return dir;
-    }
-
-    public void setDir(Dir dir) {
-        this.dir = dir;
-    }
-
-
-    Tank(Integer x, Integer y, Dir dir, TankModel tankFrame, Boolean moveing) {
+    Tank(Integer x, Integer y, Dir dir, GameModel tankFrame, Camp camp, Integer speed, Integer hp) {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.tankModel = tankFrame;
-        this.moveing = moveing;
-    }
-
-    Tank(Integer x, Integer y, Dir dir, TankModel tankFrame) {
-        this.x = x;
-        this.y = y;
-        this.dir = dir;
-        this.tankModel = tankFrame;
-    }
-
-    Tank(Integer x, Integer y, Dir dir, TankModel tankFrame, Camp camp, Integer speed, Integer hp) {
-        this.x = x;
-        this.y = y;
-        this.dir = dir;
-        this.tankModel = tankFrame;
+        this.gameModel = tankFrame;
         this.camp = camp;
         this.speed = speed;
         this.hp = hp;
     }
-
-    Tank() {
-
-    }
-
 
     /**
      * 绘制坦克
      *
      * @param g 画笔
      */
+    @Override
     public void paintTank(Graphics g) {
         if (removeFlag) {
-            tankModel.enemyTanks.remove(this);
+            gameModel.enemyTanks.remove(this);
             return;
         }
 
@@ -298,7 +215,7 @@ public class Tank {
         if (this.removeFlag) {
             return;
         }
-        tankModel.bulletList.add(new Bullet(x, y, this.dir, tankModel, camp));
+        gameModel.bulletList.add(new Bullet(x, y, this.dir, gameModel, camp));
     }
 
     public void die() {

@@ -3,8 +3,6 @@ import org.junit.Test;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 
 /**
  * @Author 王超
@@ -18,7 +16,7 @@ public class TankTest {
 //            InputStream resourceAsStream = ResourceMgr.class.getClassLoader().getResourceAsStream("images/bulletL.gif");
 //            System.out.println(resourceAsStream);
 
-            BufferedImage read = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/bulletL.gif"));
+            BufferedImage read = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/6.gif"));
 //            if (read == null) {
 //                System.out.println("加载失败");
 //            }

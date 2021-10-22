@@ -25,7 +25,7 @@ public class Bullet {
     /**
      * tankFrame
      */
-    private TankModel tankModel;
+    private GameModel gameModel;
 
     /**
      * 是否删除标识
@@ -93,11 +93,11 @@ public class Bullet {
         this.camp = camp;
     }
 
-    Bullet(Integer x, Integer y, Dir dir, TankModel tankModel, Camp camp) {
+    Bullet(Integer x, Integer y, Dir dir, GameModel gameModel, Camp camp) {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.tankModel = tankModel;
+        this.gameModel = gameModel;
         this.camp = camp;
     }
 
@@ -110,7 +110,7 @@ public class Bullet {
     public void paintBullet(Graphics g) {
 
         if (removeFlag) {
-            tankModel.bulletList.remove(this);
+            gameModel.bulletList.remove(this);
         }
 
         // 绘制一个子弹
@@ -143,7 +143,7 @@ public class Bullet {
                 bufferedImage = ResourceMgr.bulletR;
                 break;
         }
-        BufferedImage tankBufferedImage = tankModel.tank.getBufferedImage();
+        BufferedImage tankBufferedImage = gameModel.tank.getBufferedImage();
         int x1 = x + tankBufferedImage.getWidth() / 2 - bufferedImage.getWidth() / 2;
         int y1 = y + tankBufferedImage.getHeight() / 2 - bufferedImage.getHeight() / 2;
         g.drawImage(this.bufferedImage, x1, y1, null);
@@ -223,7 +223,7 @@ public class Bullet {
                 // 移除坦克
                 tank.die();
                 // 添加爆炸特效
-                tankModel.blastList.add(new Blast(tank.getX(), tank.getY(), tankModel));
+                gameModel.blastList.add(new Blast(tank.getX(), tank.getY(), gameModel));
             } else {
                 // 标记当前子弹不可用
                 this.takeOffect = false;
