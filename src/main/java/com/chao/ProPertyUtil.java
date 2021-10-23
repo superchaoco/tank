@@ -1,3 +1,5 @@
+package com.chao;
+
 import cn.hutool.core.convert.Convert;
 import java.io.IOException;
 import java.util.Properties;

@@ -1,3 +1,5 @@
+package com.chao;
+
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
@@ -13,7 +15,7 @@ public class TankTest {
 
     @Test
     public void show() throws IOException {
-//            InputStream resourceAsStream = ResourceMgr.class.getClassLoader().getResourceAsStream("images/bulletL.gif");
+//            InputStream resourceAsStream = com.chao.ResourceMgr.class.getClassLoader().getResourceAsStream("images/bulletL.gif");
 //            System.out.println(resourceAsStream);
 
             BufferedImage read = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/6.gif"));

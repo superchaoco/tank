@@ -1,3 +1,5 @@
+package com.chao;
+
 /**
  * @Describe 坦克所有方向开火的策略
  * @Author 王超

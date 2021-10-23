@@ -1,3 +1,5 @@
+package com.chao;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -59,7 +61,7 @@ class TankFrame extends Frame {
         // 设置窗口大小 800 * 600
         this.setSize(GAME_WEIGHT, GAME_HEIGHT);
         // 设置标题
-        this.setTitle("Tank Battle");
+        this.setTitle("com.chao.Tank Battle");
         // 监听关闭时间
         this.addWindowListener(new WindowAdapter() {
             @Override

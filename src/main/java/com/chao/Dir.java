@@ -1,3 +1,5 @@
+package com.chao;
+
 public enum Dir {
     /**
      * 向上

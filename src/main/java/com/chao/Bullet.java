@@ -1,3 +1,5 @@
+package com.chao;
+
 import lombok.Data;
 
 import java.awt.*;
@@ -43,7 +45,12 @@ public class Bullet extends GameObject {
     /**
      * 子弹图片
      */
-    private BufferedImage bufferedImage;
+    private BufferedImage bufferedImage = ResourceMgr.bulletU;
+
+    /**
+     * 碰撞检测需要
+     */
+    public Rectangle rectangle1 = new Rectangle();
 
     /**
      * 当前子弹是否生效
@@ -62,6 +69,11 @@ public class Bullet extends GameObject {
         this.dir = dir;
         this.gameModel = gameModel;
         this.camp = camp;
+
+        rectangle1.x = x;
+        rectangle1.y = y;
+        rectangle1.width = bufferedImage.getWidth();
+        rectangle1.height = bufferedImage.getHeight();
     }
 
 
@@ -154,6 +166,11 @@ public class Bullet extends GameObject {
                 break;
         }
 
+        rectangle1.x = x;
+        rectangle1.y = y;
+        rectangle1.width = bufferedImage.getWidth();
+        rectangle1.height = bufferedImage.getHeight();
+
         // 移动之后如果子弹超出边界,需要删除集合中的数据
         if (x < 0 || y < 0 || x > TankFrame.GAME_WEIGHT || y > TankFrame.GAME_HEIGHT) {
             // 设置为需要删除
@@ -161,41 +178,7 @@ public class Bullet extends GameObject {
         }
     }
 
-    public void collision(Tank tank) {
-        // 如果是相同阵营直接返回  || tank.getRemoveFlag() 主要是为了确定坦克死没死,死了就不进行碰撞检测
-        if (this.camp.equals(tank.getCamp()) || tank.getRemoveFlag()) {
-            return;
-        }
-        Rectangle rectangle1 = new Rectangle(this.x, this.y, tank.getBufferedImage().getWidth(), tank.getBufferedImage().getHeight());
-        Rectangle rectangle2 = new Rectangle(tank.getX(), tank.getY(), this.bufferedImage.getWidth(), this.bufferedImage.getHeight());
-        if (rectangle1.intersects(rectangle2)) {
-            // 碰上了子弹就要死掉
-            this.die();
-
-            // 标记子弹不可用,不然一颗子弹下一帧又打身上了
-            if (!takeOffect) {
-                return;
-            }
-
-            // 扣除一点血量
-            Integer hp = tank.getHp();
-
-            hp = hp - 1;
-            tank.setHp(hp);
-            if (hp <= 0) {
-                // 如果想交子弹挂了 坦克也挂了
-                // 移除坦克
-                tank.die();
-                // 添加爆炸特效
-                gameModel.addObject(new Blast(tank.getX(), tank.getY(), gameModel));
-            } else {
-                // 标记当前子弹不可用
-                this.takeOffect = false;
-            }
-        }
-    }
-
-    private void die() {
+    public void die() {
         this.removeFlag = true;
     }
 

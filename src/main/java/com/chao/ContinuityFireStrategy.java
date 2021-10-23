@@ -1,3 +1,5 @@
+package com.chao;
+
 /**
  * @Describe 坦克三连发策略
  * @Author 王超

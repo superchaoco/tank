@@ -1,3 +1,5 @@
+package com.chao;
+
 public enum Camp {
     /**
      * 我方

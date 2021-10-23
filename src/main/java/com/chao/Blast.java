@@ -1,3 +1,5 @@
+package com.chao;
+
 import lombok.Data;
 
 import java.awt.*;

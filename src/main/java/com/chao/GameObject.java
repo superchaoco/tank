@@ -1,3 +1,5 @@
+package com.chao;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +25,16 @@ public abstract class GameObject {
      * y轴
      */
     private int y;
+
+    /**
+     * 上一步x
+     */
+    private int oldX;
+
+    /**
+     * 上一步Y
+     */
+    private int oldY;
 
     /**
      * 绘制坦克

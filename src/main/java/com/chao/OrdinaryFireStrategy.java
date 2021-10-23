@@ -1,3 +1,5 @@
+package com.chao;
+
 /**
  * @Describe 坦克普通开火策略策略
  * @Author 王超

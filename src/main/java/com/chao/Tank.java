@@ -1,5 +1,8 @@
+package com.chao;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
@@ -31,7 +34,7 @@ public class Tank extends GameObject {
     /**
      * 使用图片
      */
-    private BufferedImage bufferedImage;
+    private BufferedImage bufferedImage = ResourceMgr.goodTankU;
 
     /**
      * 坦克的血量
@@ -66,16 +69,25 @@ public class Tank extends GameObject {
      */
     private Random random = new Random();
 
+    public Rectangle rectangle = new Rectangle();
+
     Tank(Integer x, Integer y, Dir dir, GameModel tankFrame, Boolean moveing) {
+        super(x, y, x, y);
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.gameModel = tankFrame;
         this.moveing = moveing;
+
+        rectangle.x = x;
+        rectangle.y = y;
+        rectangle.width = bufferedImage.getWidth();
+        rectangle.height = bufferedImage.getHeight();
     }
 
 
     Tank(Integer x, Integer y, Dir dir, GameModel tankFrame, Camp camp, Integer speed, Integer hp) {
+        super(x, y, x, y);
         this.x = x;
         this.y = y;
         this.dir = dir;
@@ -83,6 +95,11 @@ public class Tank extends GameObject {
         this.camp = camp;
         this.speed = speed;
         this.hp = hp;
+
+        rectangle.x = x;
+        rectangle.y = y;
+        rectangle.width = bufferedImage.getWidth();
+        rectangle.height = bufferedImage.getHeight();
     }
 
     /**
@@ -139,6 +156,8 @@ public class Tank extends GameObject {
         if (!moveing) {
             return;
         }
+//        this.setOldX(x);
+//        this.setOldY(y);
         switch (this.dir) {
             case RIGHT_DOWN:
                 x += speed;
@@ -184,6 +203,11 @@ public class Tank extends GameObject {
 
         // 边界检测
         boundaryCheck();
+
+        rectangle.x = x;
+        rectangle.y = y;
+        rectangle.width = bufferedImage.getWidth();
+        rectangle.height = bufferedImage.getHeight();
 
     }
 
