@@ -13,6 +13,7 @@ public class CollisionChain implements Collision {
         collisionList.add(new TankAndBulletConllision());
         collisionList.add(new TankAndTankConllision());
         collisionList.add(new TankAndWallConllision());
+        collisionList.add(new BulletAndWallConllision());
     }
 
     public void remove(Collision collision){

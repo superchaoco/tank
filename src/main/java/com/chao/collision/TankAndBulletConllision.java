@@ -48,8 +48,7 @@ public class TankAndBulletConllision implements Collision {
                 // 移除坦克
                 tank.setRemoveFlag(true);
                 // 添加爆炸特效
-                GameModel gameModel = bullet.getGameModel();
-                gameModel.addObject(new Blast(tank.getX(), tank.getY(), gameModel));
+                GameModel.getInstance().addObject(new Blast(tank.getX(), tank.getY()));
                 return false;
             } else {
                 // 标记当前子弹不可用

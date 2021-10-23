@@ -28,11 +28,6 @@ public class Bullet extends GameObject {
     private Dir dir;
 
     /**
-     * tankFrame
-     */
-    private GameModel gameModel;
-
-    /**
      * 是否删除标识
      */
     private Boolean removeFlag = false;
@@ -63,11 +58,10 @@ public class Bullet extends GameObject {
     private static final Integer SPEED = 20;
 
 
-    Bullet(Integer x, Integer y, Dir dir, GameModel gameModel, Camp camp) {
+    Bullet(Integer x, Integer y, Dir dir, Camp camp) {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.gameModel = gameModel;
         this.camp = camp;
 
         rectangle1.x = x;
@@ -86,7 +80,7 @@ public class Bullet extends GameObject {
     public void paintGameObject(Graphics g) {
 
         if (removeFlag) {
-            gameModel.removeObject(this);
+            GameModel.getInstance().removeObject(this);
         }
 
         // 绘制一个子弹
@@ -119,7 +113,7 @@ public class Bullet extends GameObject {
                 bufferedImage = ResourceMgr.bulletR;
                 break;
         }
-        BufferedImage tankBufferedImage = gameModel.tank.getBufferedImage();
+        BufferedImage tankBufferedImage = GameModel.getInstance().tank.getBufferedImage();
         int x1 = x + tankBufferedImage.getWidth() / 2 - bufferedImage.getWidth() / 2;
         int y1 = y + tankBufferedImage.getHeight() / 2 - bufferedImage.getHeight() / 2;
         g.drawImage(this.bufferedImage, x1, y1, null);

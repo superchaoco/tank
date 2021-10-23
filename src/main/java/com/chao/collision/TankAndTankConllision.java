@@ -23,10 +23,10 @@ public class TankAndTankConllision implements Collision {
         Rectangle rectangle1 = tank1.getRectangle();
         Rectangle rectangle2 = tank2.getRectangle();
         if (rectangle1.intersects(rectangle2)) {
-//            tank1.setX(tank1.getOldX());
-//            tank1.setY(tank1.getOldY());
-//            tank2.setX(tank2.getOldX());
-//            tank2.setY(tank2.getOldY());
+            tank1.setX(tank1.getOldX());
+            tank1.setY(tank1.getOldY());
+            tank2.setX(tank2.getOldX());
+            tank2.setY(tank2.getOldY());
         }
 
         return true;

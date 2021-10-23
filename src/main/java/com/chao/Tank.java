@@ -60,23 +60,17 @@ public class Tank extends GameObject {
     private Boolean removeFlag = false;
 
     /**
-     * 页面对象
-     */
-    private GameModel gameModel;
-
-    /**
      * 创建随机数对象`
      */
     private Random random = new Random();
 
     public Rectangle rectangle = new Rectangle();
 
-    Tank(Integer x, Integer y, Dir dir, GameModel tankFrame, Boolean moveing) {
+    Tank(Integer x, Integer y, Dir dir, Boolean moveing) {
         super(x, y, x, y);
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.gameModel = tankFrame;
         this.moveing = moveing;
 
         rectangle.x = x;
@@ -86,12 +80,11 @@ public class Tank extends GameObject {
     }
 
 
-    Tank(Integer x, Integer y, Dir dir, GameModel tankFrame, Camp camp, Integer speed, Integer hp) {
+    Tank(Integer x, Integer y, Dir dir, Camp camp, Integer speed, Integer hp) {
         super(x, y, x, y);
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.gameModel = tankFrame;
         this.camp = camp;
         this.speed = speed;
         this.hp = hp;
@@ -110,7 +103,7 @@ public class Tank extends GameObject {
     @Override
     public void paintGameObject(Graphics g) {
         if (removeFlag) {
-            gameModel.removeObject(this);
+            GameModel.getInstance().removeObject(this);
             return;
         }
 
@@ -156,8 +149,8 @@ public class Tank extends GameObject {
         if (!moveing) {
             return;
         }
-//        this.setOldX(x);
-//        this.setOldY(y);
+        this.setOldX(x);
+        this.setOldY(y);
         switch (this.dir) {
             case RIGHT_DOWN:
                 x += speed;
@@ -236,7 +229,7 @@ public class Tank extends GameObject {
         if (this.removeFlag) {
             return;
         }
-        gameModel.addObject(new Bullet(x, y, this.dir, gameModel, camp));
+        GameModel.getInstance().addObject(new Bullet(x, y, this.dir, camp));
     }
 
     public void die() {

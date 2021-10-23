@@ -28,21 +28,34 @@ public class GameModel {
      */
     private CollisionChain collisionChain = new CollisionChain();
 
-    public GameModel() {
+    public static final GameModel GAME_MODEL = new GameModel();
+
+    private GameModel() {
+
+    }
+
+    public static GameModel getInstance() {
+        return GAME_MODEL;
+    }
+
+    public void init() {
 
         // 初始化游戏物体
         Integer enemyTanksNum = ProPertyUtil.getValueByKey("enemyTanksNum", Integer.class);
 
         // 初始化敌方坦克群
         for (int i = 0; i < enemyTanksNum; i++) {
-            this.addObject(new Tank(i * 100, 90, Dir.DOWN, this, true));
+            this.addObject(new Tank(i * 100, 90, Dir.DOWN, true));
         }
 
         // 初始化墙
-        for (int i = 0; i < 10; i++) {
-            this.addObject(new Wall(i * 100, 200, this));
+        for (int i = 1; i < 20; i++) {
+            int i1 = i * 50;
+            if (i == 5 || i == 10 || i == 15) {
+                continue;
+            }
+            this.addObject(new Wall(i1, 300, this));
         }
-
     }
 
     public void addObject(GameObject gameObject) {
@@ -56,7 +69,7 @@ public class GameModel {
     /**
      * 创建主站坦克
      */
-    public Tank tank = new Tank(x, y, Dir.DOWN, this, Camp.GOOD, 10, 500);
+    public Tank tank = new Tank(x, y, Dir.DOWN, Camp.GOOD, 10, 500);
 
     /**
      * 绘制游戏

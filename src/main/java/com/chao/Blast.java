@@ -30,19 +30,16 @@ public class Blast extends GameObject {
      */
     private int y;
 
-    private GameModel gameModel;
-
-    public Blast(int x, int y, GameModel gameModel) {
+    public Blast(int x, int y) {
         this.x = x;
         this.y = y;
-        this.gameModel = gameModel;
     }
 
     @Override
     public void paintGameObject(Graphics g) {
         g.drawImage(ResourceMgr.blastList.get(recordIndex++), x, y, null);
         if (ResourceMgr.blastList.size() == recordIndex) {
-            gameModel.removeObject(this);
+            GameModel.getInstance().removeObject(this);
         }
 
     }

@@ -12,14 +12,13 @@ public class AllDirFireStrategy implements FireStrategy {
         if (tank.getRemoveFlag()) {
             return;
         }
-        GameModel gameModel = tank.getGameModel();
-        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.UP, gameModel, Camp.GOOD));
-        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.DOWN, gameModel, Camp.GOOD));
-        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.LEFT, gameModel, Camp.GOOD));
-        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT, gameModel, Camp.GOOD));
-        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT_DOWN, gameModel, Camp.GOOD));
-        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.LEFT_DOWN, gameModel, Camp.GOOD));
-        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT_UP, gameModel, Camp.GOOD));
-        gameModel.addObject(new Bullet(tank.getX(), tank.getY(), Dir.LEFT_UP, gameModel, Camp.GOOD));
+        GameModel.getInstance().addObject(new Bullet(tank.getX(), tank.getY(), Dir.UP, Camp.GOOD));
+        GameModel.getInstance().addObject(new Bullet(tank.getX(), tank.getY(), Dir.DOWN, Camp.GOOD));
+        GameModel.getInstance().addObject(new Bullet(tank.getX(), tank.getY(), Dir.LEFT, Camp.GOOD));
+        GameModel.getInstance().addObject(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT, Camp.GOOD));
+        GameModel.getInstance().addObject(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT_DOWN, Camp.GOOD));
+        GameModel.getInstance().addObject(new Bullet(tank.getX(), tank.getY(), Dir.LEFT_DOWN, Camp.GOOD));
+        GameModel.getInstance().addObject(new Bullet(tank.getX(), tank.getY(), Dir.RIGHT_UP, Camp.GOOD));
+        GameModel.getInstance().addObject(new Bullet(tank.getX(), tank.getY(), Dir.LEFT_UP, Camp.GOOD));
     }
 }
