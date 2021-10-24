@@ -39,8 +39,6 @@ class TankFrame extends Frame {
     private Boolean flagDown = false;
 
     TankFrame() {
-        // 初始化tankModel
-        GameModel.getInstance().init();
         // 打开窗口
         this.setVisible(true);
         // 设置窗口不能修改

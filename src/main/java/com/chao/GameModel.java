@@ -34,6 +34,11 @@ public class GameModel {
 
     }
 
+    static {
+        // 初始化tankModel
+        GAME_MODEL.init();
+    }
+
     public static GameModel getInstance() {
         return GAME_MODEL;
     }
