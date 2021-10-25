@@ -1,7 +1,7 @@
 package com.chao.collision;
 
 import com.chao.*;
-
+import com.chao.decorator.GamneDecorator;
 import java.awt.*;
 
 /**
@@ -10,16 +10,26 @@ import java.awt.*;
 public class TankAndBulletConllision implements Collision {
     @Override
     public boolean condition(GameObject o1, GameObject o2) {
-        if (o1 instanceof Tank && o2 instanceof Bullet) {
-            return handler(o1, o2);
-        } else if (o2 instanceof Tank && o1 instanceof Bullet) {
-            return this.condition(o2, o1);
+
+        // 使用了装饰者模式,导致instanceof不准确,需要转换一下
+        GameObject oo1 = o1;
+        GameObject oo2 = o2;
+        if (o1 instanceof GamneDecorator) {
+            oo1 = ((GamneDecorator) o1).getGameObject();
+        }
+        if (o2 instanceof GamneDecorator) {
+            oo2 = ((GamneDecorator) o2).getGameObject();
+        }
+        if (oo1 instanceof Tank && oo2 instanceof Bullet) {
+            return handler(oo1, oo2,o2);
+        } else if (oo2 instanceof Tank && oo1 instanceof Bullet) {
+            return this.condition(oo2, oo1);
         } else {
             return true;
         }
     }
 
-    private boolean handler(GameObject o1, GameObject o2) {
+    private boolean handler(GameObject o1, GameObject o2,GameObject oo2) {
         Tank tank = (Tank) o1;
         Bullet bullet = (Bullet) o2;
 
@@ -31,7 +41,8 @@ public class TankAndBulletConllision implements Collision {
         Rectangle rectangle2 = bullet.rectangle1;
         if (rectangle1.intersects(rectangle2)) {
             // 碰上了子弹就要死掉
-            bullet.setRemoveFlag(true);
+//            bullet.setRemoveFlag(true);
+            GameModel.getInstance().removeObject(oo2);
 
             // 标记子弹不可用,不然一颗子弹下一帧又打身上了
             if (!bullet.getTakeOffect()) {

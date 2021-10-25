@@ -54,13 +54,13 @@ public class GameModel {
         }
 
         // 初始化墙
-        for (int i = 1; i < 20; i++) {
-            int i1 = i * 50;
-            if (i == 5 || i == 10 || i == 15) {
-                continue;
-            }
-            this.addObject(new Wall(i1, 300, this));
-        }
+//        for (int i = 1; i < 20; i++) {
+//            int i1 = i * 50;
+//            if (i == 5 || i == 10 || i == 15) {
+//                continue;
+//            }
+//            this.addObject(new Wall(i1, 300, this));
+//        }
     }
 
     public void addObject(GameObject gameObject) {

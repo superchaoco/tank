@@ -1,5 +1,7 @@
 package com.chao;
 
+import com.chao.decorator.RectDecorator;
+
 /**
  * @Describe 坦克普通开火策略策略
  * @Author 王超
@@ -12,6 +14,6 @@ public class OrdinaryFireStrategy implements FireStrategy {
         if (tank.getRemoveFlag()) {
             return;
         }
-        GameModel.getInstance().addObject(new Bullet(tank.getX(), tank.getY(), tank.getDir(), Camp.GOOD));
+        GameModel.getInstance().addObject(new RectDecorator(new Bullet(tank.getX(), tank.getY(), tank.getDir(), Camp.GOOD)));
     }
 }

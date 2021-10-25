@@ -1,5 +1,6 @@
 package com.chao;
 
+import com.chao.decorator.GamneDecorator;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
