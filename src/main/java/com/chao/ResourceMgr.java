@@ -13,6 +13,14 @@ import java.util.Objects;
  * @Date 2021/10/16 22:26
  */
 public class ResourceMgr {
+    public static void main(String[] args) {
+        try {
+            BufferedImage read = ImageIO.read(Objects.requireNonNull(ResourceMgr.class.getClassLoader().getResourceAsStream("images/GoodTank2.png")));
+            System.out.println(read);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static BufferedImage goodTankL, goodTankU, goodTankR, goodTankD, goodTankLu, goodTankRu, goodTankLd, goodTankRd,
             badTankL, badTankU, badTankR, badTankD, badTankLu, badTankRu, badTankLd, badTankRd,

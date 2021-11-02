@@ -95,6 +95,10 @@ class TankFrame extends Frame {
                     // 按下下
                     flagDown = true;
                     break;
+                case KeyEvent.VK_S:
+                    // 按下S存档
+                    GameModel.getInstance().save();
+                    break;
                 default:
                     break;
             }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * @Author chao
@@ -15,7 +16,7 @@ import java.awt.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class GameObject {
+public abstract class GameObject implements Serializable {
 
     /**
      * x轴

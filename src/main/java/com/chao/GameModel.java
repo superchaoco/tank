@@ -3,7 +3,12 @@ package com.chao;
 import com.chao.collision.CollisionChain;
 
 import java.awt.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,7 +16,7 @@ import java.util.List;
  * @Version V1.0.0
  * @Date 2021/10/22 23:20
  */
-public class GameModel {
+public class GameModel implements Serializable {
     /**
      * 坦克初始化位置 xy
      */
@@ -28,13 +33,14 @@ public class GameModel {
      */
     private CollisionChain collisionChain = new CollisionChain();
 
-    public static final GameModel GAME_MODEL = new GameModel();
+    public static final GameModel GAME_MODEL;
 
     private GameModel() {
 
     }
 
     static {
+        GAME_MODEL = new GameModel();
         // 初始化tankModel
         GAME_MODEL.init();
     }
@@ -108,6 +114,23 @@ public class GameModel {
             for (int j = 1; j < elementList.size(); j++) {
                 GameObject gameObject1 = elementList.get(j);
                 collisionChain.condition(gameObject, gameObject1);
+            }
+        }
+    }
+
+    public void save() {
+        ObjectOutputStream oo = null;
+        try {
+             oo = new ObjectOutputStream(new FileOutputStream("D:/tank/" + new Date() + ".data"));
+             oo.writeObject(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                assert oo != null;
+                oo.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
