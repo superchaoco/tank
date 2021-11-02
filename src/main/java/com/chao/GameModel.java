@@ -1,15 +1,12 @@
 package com.chao;
 
+import cn.hutool.core.util.RandomUtil;
 import com.chao.collision.CollisionChain;
-
 import java.awt.*;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @Author chao
@@ -33,7 +30,7 @@ public class GameModel implements Serializable {
      */
     private CollisionChain collisionChain = new CollisionChain();
 
-    public static final GameModel GAME_MODEL;
+    private static GameModel GAME_MODEL;
 
     private GameModel() {
 
@@ -121,14 +118,34 @@ public class GameModel implements Serializable {
     public void save() {
         ObjectOutputStream oo = null;
         try {
-             oo = new ObjectOutputStream(new FileOutputStream("D:/tank/" + new Date() + ".data"));
+             oo = new ObjectOutputStream(new FileOutputStream("D:/tank/111.data"));
              oo.writeObject(this);
+            System.out.println("存档成功");
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
             try {
                 assert oo != null;
                 oo.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void load() {
+        ObjectInputStream oi = null;
+        try {
+            oi = new ObjectInputStream(new FileInputStream("D:/tank/111.data"));
+            GAME_MODEL = (GameModel)oi.readObject();
+
+            System.out.println("读档成功");
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                assert oi != null;
+                oi.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

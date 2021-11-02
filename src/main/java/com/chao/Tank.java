@@ -34,7 +34,7 @@ public class Tank extends GameObject {
     /**
      * 使用图片
      */
-    private BufferedImage bufferedImage = ResourceMgr.goodTankU;
+    private transient BufferedImage bufferedImage = ResourceMgr.goodTankU;
 
     /**
      * 坦克的血量

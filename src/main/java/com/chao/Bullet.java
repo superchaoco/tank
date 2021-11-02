@@ -40,7 +40,7 @@ public class Bullet extends GameObject {
     /**
      * 子弹图片
      */
-    private BufferedImage bufferedImage = ResourceMgr.bulletU;
+    private transient BufferedImage bufferedImage = ResourceMgr.bulletU;
 
     /**
      * 碰撞检测需要
